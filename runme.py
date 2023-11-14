@@ -1,6 +1,6 @@
 import os
 import sys
-from file_scanner import FileScanner
+from project_saver import ProjectSaver
 #from source_file import *
 #from file_partitioner import FilePartitioner
 #import java_parser_listener
@@ -13,12 +13,10 @@ def load_new_project():
         print("The specified directory does not exist.")
         return None
 
-    scanner = FileScanner(directory)
-    scanner.scan()
+    scanner = ProjectSaver(directory, project_name)
+    file_paths = scanner.scan_directory()
 
-    print(f"Scanning {len(scanner.file_paths)} files.")
-
-    for file in scanner.file_paths:
+    for file in file_paths:
         print(str(file))
 
     # And then save them into a database

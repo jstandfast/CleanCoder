@@ -29,3 +29,6 @@ class Line:
         self.content = content
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+
+class Dependency:
+    def __init__(self, file_id, dependency_id, dependency_type)

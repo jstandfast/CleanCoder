@@ -17,5 +17,6 @@ class DirectoryScanner:
         paths = []
         for root, dirs, files in os.walk(self.path):
             for file in files:
+                print(os.path.join(root, file))
                 paths.append(os.path.join(root, file))
         return paths

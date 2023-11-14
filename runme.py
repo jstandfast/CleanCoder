@@ -14,10 +14,7 @@ def load_new_project():
         return None
 
     scanner = ProjectSaver(directory, project_name)
-    file_paths = scanner.scan_directory()
-
-    for file in file_paths:
-        print(str(file))
+    scanner.save_project()
 
     # And then save them into a database
     # For example:

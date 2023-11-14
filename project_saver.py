@@ -8,20 +8,20 @@ class ProjectSaver:
 		self.project_name = project_name
 
 	def save_project(self):
-		file_paths = scan_directory
-		files = read_files
-		save_files(files)
+		file_paths = self.scan_directory()
+		files = self.read_files(file_paths)
+		self.save_files(files)
 
 	def scan_directory(self):
 		scanner = DirectoryScanner(self.project_path)
 		scanner.scan()
 		return scanner.get_file_paths()
 
-	def read_files(self):
-		reader = FileReader(files)
+	def read_files(self, file_paths):
+		reader = FileReader(file_paths)
 		reader.read()
-		return reader.get_file_objects()
+		return reader.file_objs
 
 	def save_files(self, files):
 		saver = FileSaver(files)
-		saver.store_files()
+		# saver.store_files()

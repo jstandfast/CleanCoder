@@ -1,2 +1,2 @@
-# CleanCode
- Simplified version of CodeTracer using minimal frameworks
+# CleanCoder
+ Simplified version of CodeTracer without the use of any frameworks.

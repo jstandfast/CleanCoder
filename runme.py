@@ -5,7 +5,7 @@ from project_saver import ProjectSaver
 #from file_partitioner import FilePartitioner
 #import java_parser_listener
 
-def load_new_project():
+def start_new_project():
     directory = input("Enter the directory path where the project is located: ")
     project_name = input("Enter the project name: ")
 
@@ -49,14 +49,14 @@ def exit_program():
 def main_menu():
     while True:
         print("\nMain Menu:")
-        print("1. Load new project")
+        print("1. Start new project")
         print("2. Open existing project")
         print("3. Exit")
         
         choice = input("Enter your choice (1/2/3): ")
         
         if choice == '1':
-            project = load_new_project()
+            project = start_new_project()
             if project:
                 # Proceed with additional options for the loaded project
                 pass

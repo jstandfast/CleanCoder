@@ -3,8 +3,6 @@ from file_reader import FileReader
 from file_saver import FileSaver
 from db_connector import get_db_connection
 import db_projects
-# import db_files
-# import db_lines
 
 class ProjectSaver:
 	def __init__(self, project_path, project_name):
@@ -13,11 +11,11 @@ class ProjectSaver:
 
 	def save_project(self):
 		db_connection = get_db_connection()
-		project_created = self.store_project(db_connection)
-		if project_created:
+		project_id = self.store_project(db_connection)
+		if project_id:
 			file_paths = self.scan_directory()
 			files = self.read_files(file_paths)
-			self.save_files(files, db_connection)
+			self.save_files(db_connection, project_id, files)
 		db_connection.close()
 
 	def scan_directory(self):
@@ -30,9 +28,9 @@ class ProjectSaver:
 		reader.read()
 		return reader.file_objs
 
-	def save_files(self, files, db_connection):
+	def save_files(self, db_connection, project_id, files):
 		saver = FileSaver(files)
-		# saver.store_files()
+		saver.store_files(db_connection, project_id)
 
 	def store_project(self, db_connection):
 		existing_id = db_projects.check_if_project_exists(db_connection, self.project_name, self.project_path)
@@ -47,7 +45,7 @@ class ProjectSaver:
 		new_id = db_projects.insert_project(db_connection, self.project_name, self.project_path)
 
 		if new_id:
-			return True
+			return new_id
 		else:
 			print("New project not stored in the database.")
 			return False

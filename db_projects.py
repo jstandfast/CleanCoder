@@ -1,3 +1,5 @@
+from mysql.connector import Error
+
 def check_if_project_exists(db_connection, project_name, project_path):
 	try:
 		cursor = db_connection.cursor()

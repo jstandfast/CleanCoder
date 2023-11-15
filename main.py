@@ -58,7 +58,7 @@ def main_menu():
         if choice == '1':
             project = start_new_project()
             if project:
-                # Proceed with additional options for the loaded project
+                # Proceed with additional options for the new project
                 pass
         elif choice == '2':
             project = open_existing_project()

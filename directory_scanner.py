@@ -1,5 +1,6 @@
 import os
 import re
+from tqdm import tqdm
 
 class DirectoryScanner:
     def __init__(self, path):
@@ -11,12 +12,11 @@ class DirectoryScanner:
 
     def scan(self):
         self.file_paths = self.__scan_file_paths__()
-        # This can be fleshed out to scan for all source files
 
     def __scan_file_paths__(self):
         paths = []
-        for root, dirs, files in os.walk(self.path):
+        for root, dirs, files in tqdm(os.walk(self.path), desc="Scanning Directories"):
             for file in files:
-                print(os.path.join(root, file))
-                paths.append(os.path.join(root, file))
+                file_path = os.path.join(root, file)
+                paths.append(file_path)
         return paths

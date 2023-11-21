@@ -1,9 +1,6 @@
 import os
 import sys
 from project_saver import ProjectSaver
-#from source_file import *
-#from file_partitioner import FilePartitioner
-#import java_parser_listener
 
 def start_new_project():
     directory = input("Enter the directory path where the project is located: ")
@@ -13,15 +10,9 @@ def start_new_project():
         print("The specified directory does not exist.")
         return None
 
-    scanner = ProjectSaver(directory, project_name)
-    scanner.save_project()
+    saver = ProjectSaver(directory, project_name)
+    saver.save_project()
 
-    # And then save them into a database
-    # For example:
-    # save_to_database(java_files, project_name)
-
-    # The objects should also be kept in memory if the program will work with them
-    # For now, let's assume the scanner returns a list of file paths for simplicity
     loaded_project = {'name': project_name, 'files': []}  # Replace with actual objects
 
     print(f"Project '{project_name}' has been loaded.")

@@ -1,8 +1,9 @@
 import os
 import sys
 from project_saver import ProjectSaver
+from project_loader import PorjectLoader
 
-def start_new_project():
+def save_new_project():
     directory = input("Enter the directory path where the project is located: ")
     project_name = input("Enter the project name: ")
 
@@ -13,25 +14,19 @@ def start_new_project():
     saver = ProjectSaver(directory, project_name)
     saver.save_project()
 
-    loaded_project = {'name': project_name, 'files': []}  # Replace with actual objects
+    print(f"Project '{project_name}' has been saved.")
+    return project_name
+
+def load_existing_project(project_name = None):
+
+    if project_name == None:
+        project_name = input("Enter the project name to load: ")
+
+    loader = ProjectLoader(project_name)
+    loader.load_project()
 
     print(f"Project '{project_name}' has been loaded.")
     return loaded_project
-
-def open_existing_project():
-    project_name = input("Enter the project name to open: ")
-    # Here you would retrieve the project's Java file objects from the database
-    # For example:
-    # project_data = load_from_database(project_name)
-
-    # For now, let's assume we retrieve a list of file paths
-    project_data = {'name': project_name, 'files': []}  # Replace with actual objects
-
-    if project_data['files']:
-        print(f"Project '{project_name}' is now open.")
-    else:
-        print(f"No project with the name '{project_name}' was found in the database.")
-    return project_data
 
 def exit_program():
     print("Exiting the program.")
@@ -47,12 +42,12 @@ def main_menu():
         choice = input("Enter your choice (1/2/3): ")
         
         if choice == '1':
-            project = start_new_project()
+            project = save_new_project()
             if project:
-                # Proceed with additional options for the new project
+                load_existing_project(project)
                 pass
         elif choice == '2':
-            project = open_existing_project()
+            project = load_existing_project()
             if project:
                 # Proceed with additional options for the opened project
                 pass
